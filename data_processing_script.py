@@ -5,8 +5,6 @@ import subprocess
 #Video and Audio Processing Imports:
 
 
-
-
 #want to create a long list of timestamps
 #for each row, it will be considered an indiviual timestamp
 #each row will have the concatentated information from the 

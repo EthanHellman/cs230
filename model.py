@@ -3,13 +3,18 @@ from numpy import array
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import LSTM
-
 from keras.callbacks import ModelCheckpoint
 from keras.models import Model, load_model, Sequential
 from keras.layers import Dense, Activation, Dropout, Input, Masking, TimeDistributed, LSTM, Conv1D
 from keras.layers import GRU, Bidirectional, BatchNormalization, Reshape
 from keras.optimizers import Adam
 
+
+########
+#This file creates and trains an instance of the model.
+#Saves weights for later use for another model/for a different framework such 
+#as real-time detection
+########
 
 
 def create_model(input_shape):
@@ -52,15 +57,19 @@ def main():
 
 	Y_Dev = np.reshape(Y_Dev, (np.shape(Y_Dev)[0], 1, 15))
 
+	#model_checkpoint_callback = ModelCheckpoint("/checkpoint.h5", save_weights_only = True, monitor = "", mode = "max", save_best_only = True)
+
 
 	model = create_model(input_shape = (15, 1078))
 
 	model.summary()
 
-	opt = Adam(lr = 0.0001, beta_1 = .9, beta_2 = .999, decay = .01)
+	opt = Adam(lr = 0.001, beta_1 = .9, beta_2 = .999, decay = .01)
 	model.compile(loss = 'binary_crossentropy', optimizer = opt, metrics = ["accuracy"])
 
-	model.fit(X_train, Y_train, batch_size = 5, epochs = 100)
+	#model.fit(X_train, Y_train, batch_size = 10, epochs = 100, callbacks = [model_checkpoint_callback])
+
+	model.fit(X_train, Y_train, batch_size = 10, epochs = 100)
 
 	loss, accuracy = model.evaluate(X_Dev, Y_Dev)
 

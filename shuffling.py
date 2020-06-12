@@ -8,6 +8,13 @@ import matplotlib.pyplot as plt
 from sklearn.utils import shuffle as special_shuffle
 
 
+########
+#This program is responsible for taking the data that was pre-processed by the preprocessing_script.py file
+#and sorting it into Train, Dev, Test sets.
+#This script makes sure to 1. randomize distriubtion and 2. get rid of skew towards negative examples
+#######
+
+
 
 def main():
 

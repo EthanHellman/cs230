@@ -8,6 +8,16 @@ import matplotlib.pyplot as plt
 from sklearn.utils import shuffle as special_shuffle
 
 
+######
+#This file is responsible for preprocessing all of the training data
+#The process is as follows:
+#For each data session, perform facial feature localization and audio feature parsing
+#Turn these into data points
+#Load those data points to be shuffled and sorted into Train, Dev, Test sets for another
+#script
+######
+
+
 
 # Calculate and plot spectrogram for a wav audio file
 def graph_spectrogram(wav_file):
